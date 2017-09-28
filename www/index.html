@@ -16,14 +16,33 @@
 
 <body>
     <div class="app">
-        <h1>徐依路</h1>
-       <img src="img/05.png" />
+	    <input type="button" value="alert" id="btn1">
+	  <input type="button" value="confirm" id="btn2">
+	  <input type="button" value="beep" id="btn3">
     </div>
+     
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
 </body>
 
 </html>
+<script>
+ var oBtn1=document.querySelector('#btn1');
+  var oBtn2=document.querySelector('#btn2');
+  var oBtn3=document.querySelector('#btn3');
+
+  oBtn1.addEventListener('touchstart',function(){
+    navigator.notification.alert('操作成功', function(){
+      alert('用户确认后要办的事，写在这里')
+    }, '标题', '确定');
+  },false);
+  oBtn2.addEventListener('touchstart',function(){
+    navigator.notification.confirm('你确定要这么操作', function(mess){
+      alert(mess)// 1 2 3
+    }, '标题', '确定,取消');
+  },false);
+
+  oBtn3.addEventListener('touchstart',function(){
+    navigator.notification.beep(1);
+  },false);
+</script>
